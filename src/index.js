@@ -4,13 +4,9 @@ import './styles.css';
 
 
 const menuContainer = document.querySelector('.js-menu');
-const cardsMarkup = createFoodCardsMarkup(menu);
+const cardsMarkup = foodCardsTpl(menu);
 
 menuContainer.insertAdjacentHTML('beforeend', cardsMarkup);
-
-function createFoodCardsMarkup(menu) {
-	return foodCardsTpl(menu);
-}
 
 
 const Theme = {
@@ -23,19 +19,15 @@ const themeSwitch = document.querySelector('#theme-switch-toggle');
 currentTheme();
 
 function currentTheme() {
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === Theme.LIGHT || savedTheme === null) {
-    notThemeSwitchChecked();
-    return;
-  }
-  if (savedTheme === Theme.DARK) {
-    themeSwitchChecked();
-    return;
-  }
+	const savedTheme = localStorage.getItem('theme');
+	if (savedTheme === Theme.DARK) {
+		themeSwitchChecked();
+		return;
+  	}
+	notThemeSwitchChecked();
 }
 
 function notThemeSwitchChecked() {
-	themeSwitch.checked = false;
 	body.classList.remove(Theme.DARK);
 	body.classList.add(Theme.LIGHT);
   	localStorage.setItem('theme', Theme.LIGHT);
